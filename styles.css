@@ -333,25 +333,3 @@ body.x-silence-explore [data-testid="primaryColumn"]::after {
   pointer-events: none;
 }
 
-/* Legacy JS-based placeholder (kept for compatibility) */
-.x-silence-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  color: rgb(113, 118, 123);
-  font-size: 15px;
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.x-silence-placeholder-inner {
-  max-width: 400px;
-}
-
-.x-silence-placeholder h2 {
-  color: rgb(231, 233, 234);
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}

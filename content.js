@@ -55,53 +55,6 @@
     if (pageType !== 'other' && pageType !== 'internal') {
       document.body.classList.add(`x-silence-${pageType}`);
     }
-
-    // Add placeholder message for hidden pages
-    updatePlaceholder(pageType);
-  }
-
-  // Add or remove placeholder message
-  function updatePlaceholder(pageType) {
-    const existingPlaceholder = document.querySelector('.x-silence-placeholder');
-    if (existingPlaceholder) {
-      existingPlaceholder.remove();
-    }
-
-    // Only show placeholder on hidden pages
-    if (['home', 'notifications', 'messages', 'explore'].includes(pageType)) {
-      // Wait for primary column to exist
-      setTimeout(() => {
-        const primaryColumn = document.querySelector('[data-testid="primaryColumn"]');
-        if (primaryColumn && !document.querySelector('.x-silence-placeholder')) {
-          const placeholder = document.createElement('div');
-          placeholder.className = 'x-silence-placeholder';
-
-          let message = '';
-          switch(pageType) {
-            case 'home':
-              message = '<h2>Silence Mode Active</h2><p>Timeline hidden. Use the compose box above to post.</p>';
-              break;
-            case 'notifications':
-              message = '<h2>Notifications Hidden</h2><p>Stay focused. Your notifications are still there, just hidden.</p>';
-              break;
-            case 'messages':
-              message = '<h2>Messages Hidden</h2><p>Direct messages are hidden to reduce distractions.</p>';
-              break;
-            case 'explore':
-              message = '<h2>Explore Hidden</h2><p>Trending topics and explore content are hidden.</p>';
-              break;
-          }
-
-          placeholder.innerHTML = `<div class="x-silence-placeholder-inner">${message}</div>`;
-
-          // Insert after the header area
-          const timeline = primaryColumn.querySelector('[data-testid="primaryColumn"] > div > div');
-          if (timeline) {
-            timeline.appendChild(placeholder);
-          }
-        }
-      }, 500);
-    }
   }
 
   // Remove notification badges
