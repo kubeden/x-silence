@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "X Silence",
+  "version": "1.0",
+  "description": "Transform X/Twitter into a write-only experience by hiding feeds, notifications, and engagement metrics",
+  "content_scripts": [
+    {
+      "matches": ["*://twitter.com/*", "*://x.com/*"],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": ["activeTab"]
+}

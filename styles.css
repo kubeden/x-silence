@@ -1,0 +1,357 @@
+/* X Silence - CSS Rules to hide feed content and metrics */
+
+/* ===========================================
+   TIMELINE / FEED HIDING (Home page only)
+   Handled dynamically by content.js to allow profile viewing
+   =========================================== */
+
+/* ===========================================
+   NOTIFICATIONS
+   =========================================== */
+
+/* Hide notification badge count */
+[data-testid="app-bar-notification-indicator"],
+[aria-label*="notification"] > div[dir="ltr"] {
+  display: none !important;
+}
+
+/* Hide notifications page content */
+body.x-silence-notifications [data-testid="cellInnerDiv"] {
+  display: none !important;
+}
+
+/* ===========================================
+   DIRECT MESSAGES
+   =========================================== */
+
+/* Hide DM badge */
+[data-testid="DM_ScrollerContainer"],
+[data-testid="DMDrawer"],
+a[href="/messages"] [data-testid="icon-indicator"] {
+  display: none !important;
+}
+
+/* Hide messages page content */
+body.x-silence-messages [data-testid="DmScrollerContainer"],
+body.x-silence-messages [data-testid="conversation"],
+body.x-silence-messages [data-testid="cellInnerDiv"] {
+  display: none !important;
+}
+
+/* ===========================================
+   ENGAGEMENT METRICS (Global - hide everywhere)
+   =========================================== */
+
+/* Hide like, retweet, reply, bookmark counts */
+[data-testid="like"] span[data-testid="app-text-transition-container"],
+[data-testid="unlike"] span[data-testid="app-text-transition-container"],
+[data-testid="retweet"] span[data-testid="app-text-transition-container"],
+[data-testid="unretweet"] span[data-testid="app-text-transition-container"],
+[data-testid="reply"] span[data-testid="app-text-transition-container"],
+[data-testid="bookmark"] span[data-testid="app-text-transition-container"],
+[data-testid="removeBookmark"] span[data-testid="app-text-transition-container"] {
+  display: none !important;
+}
+
+/* Hide view count */
+[data-testid="app-text-transition-container"]:has(+ [d*="M8.75"]),
+a[href$="/analytics"],
+[aria-label*="View post analytics"],
+[aria-label*="views"] {
+  display: none !important;
+}
+
+/* Hide follower/following counts on profiles */
+a[href$="/verified_followers"] span,
+a[href$="/followers"] span,
+a[href$="/following"] span {
+  visibility: hidden !important;
+}
+
+/* ===========================================
+   LEFT NAVIGATION SIDEBAR - HIDE DISTRACTING ITEMS
+   =========================================== */
+
+/* Hide navigation items that lead to feeds/distractions */
+nav[aria-label="Primary"] a[href="/explore"],
+nav[aria-label="Primary"] a[href="/notifications"],
+nav[aria-label="Primary"] a[href="/messages"],
+nav[aria-label="Primary"] a[href*="/i/grok"],
+nav[aria-label="Primary"] a[href*="/i/premium"],
+nav[aria-label="Primary"] a[href="/i/bookmarks"],
+nav[aria-label="Primary"] a[href*="/creatorsubscriptions"],
+nav[aria-label="Primary"] a[href*="/creator-studio"],
+nav[aria-label="Primary"] a[href*="/studio"],
+nav[aria-label="Primary"] a[href*="/communities"],
+nav[aria-label="Primary"] a[data-testid="AppTabBar_More_Menu"] {
+  display: none !important;
+}
+
+/* Alternative selectors using aria-label */
+a[aria-label="Search and explore"],
+a[aria-label="Notifications"],
+a[aria-label="Direct Messages"],
+a[aria-label="Grok"],
+a[aria-label="Premium"],
+a[aria-label="Bookmarks"],
+a[aria-label="Communities"],
+a[aria-label="Creator Studio"],
+a[aria-label*="Creator"],
+a[aria-label="Live on X"],
+a[aria-label*="Live"],
+a[aria-label="Today's news"],
+a[aria-label*="news"] {
+  display: none !important;
+}
+
+/* Hide Live on X and Today's News by href patterns */
+nav[aria-label="Primary"] a[href*="/live"],
+nav[aria-label="Primary"] a[href*="/news"],
+nav[aria-label="Primary"] a[href*="/i/live"] {
+  display: none !important;
+}
+
+/* Hide the "More" menu button */
+[data-testid="AppTabBar_More_Menu"] {
+  display: none !important;
+}
+
+/* ===========================================
+   RIGHT SIDEBAR / TRENDING / RECOMMENDATIONS
+   =========================================== */
+
+/* Hide trending section */
+[data-testid="sidebarColumn"] [data-testid="trend"],
+[data-testid="sidebarColumn"] section[aria-labelledby*="accessible-list"],
+[aria-label="Timeline: Trending now"] {
+  display: none !important;
+}
+
+/* Hide "Who to follow" section */
+[data-testid="sidebarColumn"] [data-testid="UserCell"],
+aside[aria-label*="Who to follow"] {
+  display: none !important;
+}
+
+/* Hide "Subscribe to Premium" and other promotions */
+[data-testid="sidebarColumn"] a[href*="/i/premium"],
+[data-testid="sidebarColumn"] aside[aria-label*="Subscribe"] {
+  display: none !important;
+}
+
+/* Hide "Live on X" section */
+[data-testid="sidebarColumn"] [aria-label="Trending"],
+[data-testid="sidebarColumn"] div[aria-label="Trending"] {
+  display: none !important;
+}
+
+/* Hide "Today's News" section */
+[data-testid="news_sidebar"],
+[data-testid="sidebarColumn"] [data-testid="news_sidebar"] {
+  display: none !important;
+}
+
+/* Hide entire sidebar content sections that contain Live/News/Trending */
+[data-testid="sidebarColumn"] > div > div > div > div[aria-label="Trending"] {
+  display: none !important;
+}
+
+/* Nuclear option: hide all content blocks in sidebar except search */
+[data-testid="sidebarColumn"] section,
+[data-testid="sidebarColumn"] aside,
+[data-testid="sidebarColumn"] [data-testid="placementTracking"] {
+  display: none !important;
+}
+
+/* Hide any h2 sections that contain "Live on X", "Today's News", "What's happening" */
+[data-testid="sidebarColumn"] h2 {
+  display: none !important;
+}
+
+/* Hide broadcast/live buttons */
+[data-testid="sidebarColumn"] button[aria-label*="Broadcast"] {
+  display: none !important;
+}
+
+/* Hide news sidebar articles */
+[data-testid^="news_sidebar_article"] {
+  display: none !important;
+}
+
+/* ===========================================
+   EXPLORE / SEARCH
+   =========================================== */
+
+/* Hide explore page content */
+body.x-silence-explore [data-testid="cellInnerDiv"] {
+  display: none !important;
+}
+
+/* ===========================================
+   HOME TIMELINE (Applied via body class)
+   =========================================== */
+
+/* Hide the "For you / Following / Subscribed" tab navigation */
+body.x-silence-home [data-testid="ScrollSnap-List"],
+body.x-silence-home [data-testid="ScrollSnap-SwipeableList"],
+body.x-silence-home [data-testid="ScrollSnap-prevButtonWrapper"],
+body.x-silence-home [data-testid="ScrollSnap-nextButtonWrapper"],
+body.x-silence-home [data-testid="primaryColumn"] nav[role="navigation"]:has([role="tablist"]) {
+  display: none !important;
+}
+
+/* Hide "See new posts" button */
+body.x-silence-home [data-testid="pillLabel"] {
+  display: none !important;
+}
+
+body.x-silence-home [data-testid="primaryColumn"] [data-testid="cellInnerDiv"]:not(:has([data-testid="tweetButtonInline"])) {
+  display: none !important;
+}
+
+/* Keep the compose box visible on home */
+body.x-silence-home [data-testid="tweetTextarea_0"],
+body.x-silence-home [data-testid="tweetButtonInline"],
+body.x-silence-home [data-testid="toolBar"] {
+  display: block !important;
+}
+
+/* Ensure compose area parent is visible */
+body.x-silence-home [data-testid="primaryColumn"] > div > div:first-child {
+  display: block !important;
+}
+
+/* Disable scrolling on home timeline - nothing to scroll */
+body.x-silence-home {
+  overflow: hidden !important;
+}
+
+body.x-silence-home [data-testid="primaryColumn"],
+body.x-silence-home main,
+body.x-silence-home section[role="region"] {
+  overflow: hidden !important;
+}
+
+/* Also disable scroll on notifications, messages, explore */
+body.x-silence-notifications,
+body.x-silence-messages,
+body.x-silence-explore {
+  overflow: hidden !important;
+}
+
+body.x-silence-notifications [data-testid="primaryColumn"],
+body.x-silence-messages [data-testid="primaryColumn"],
+body.x-silence-explore [data-testid="primaryColumn"] {
+  overflow: hidden !important;
+}
+
+/* ===========================================
+   PLACEHOLDER MESSAGE (CSS-based for reliability)
+   =========================================== */
+
+/* Make primaryColumn position relative for absolute positioning of placeholder */
+body.x-silence-home [data-testid="primaryColumn"],
+body.x-silence-notifications [data-testid="primaryColumn"],
+body.x-silence-messages [data-testid="primaryColumn"],
+body.x-silence-explore [data-testid="primaryColumn"] {
+  position: relative !important;
+}
+
+/* Home page placeholder */
+body.x-silence-home [data-testid="primaryColumn"]::after {
+  content: "Silence Mode Active\ATimeline hidden. Use the compose box above to post.";
+  white-space: pre-wrap;
+  display: block;
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(113, 118, 123);
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Notifications placeholder */
+body.x-silence-notifications [data-testid="primaryColumn"]::after {
+  content: "Notifications Hidden\AStay focused. Your notifications are still there, just hidden.";
+  white-space: pre-wrap;
+  display: block;
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(113, 118, 123);
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Messages placeholder */
+body.x-silence-messages [data-testid="primaryColumn"]::after {
+  content: "Messages Hidden\ADirect messages are hidden to reduce distractions.";
+  white-space: pre-wrap;
+  display: block;
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(113, 118, 123);
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Explore placeholder */
+body.x-silence-explore [data-testid="primaryColumn"]::after {
+  content: "Explore Hidden\ATrending topics and explore content are hidden.";
+  white-space: pre-wrap;
+  display: block;
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgb(113, 118, 123);
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Legacy JS-based placeholder (kept for compatibility) */
+.x-silence-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  color: rgb(113, 118, 123);
+  font-size: 15px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.x-silence-placeholder-inner {
+  max-width: 400px;
+}
+
+.x-silence-placeholder h2 {
+  color: rgb(231, 233, 234);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
