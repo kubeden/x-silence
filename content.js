@@ -6,6 +6,7 @@
 
   // Track current page type
   let currentPageType = null;
+  let lastUrl = location.href;
 
   // Page type detection based on URL
   function getPageType() {
@@ -26,7 +27,7 @@
     if (path.startsWith('/i/')) {
       return 'internal';
     }
-    // Check if it's a user profile (starts with @ pattern - single path segment)
+    // Check if it's a user profile
     const pathParts = path.split('/').filter(p => p);
     if (pathParts.length >= 1 && !['home', 'notifications', 'messages', 'explore', 'search', 'compose', 'settings', 'i'].includes(pathParts[0])) {
       return 'profile';
@@ -57,33 +58,13 @@
     }
   }
 
-  // Remove notification badges
-  function removeNotificationBadges() {
-    // Remove numeric badges
-    const badges = document.querySelectorAll('[aria-label*="unread items"]');
-    badges.forEach(badge => {
-      badge.style.display = 'none';
-    });
+  // Check for URL changes (lightweight)
+  function checkUrlChange() {
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+      updatePageClasses();
+    }
   }
-
-  // Hide engagement metrics that CSS might miss
-  function hideMetrics() {
-    // Additional metric hiding via JS for dynamic content
-    const viewCountLinks = document.querySelectorAll('a[href$="/analytics"]');
-    viewCountLinks.forEach(link => {
-      link.style.display = 'none';
-    });
-  }
-
-  // Main observer for dynamic content
-  const observer = new MutationObserver((mutations) => {
-    // Check if URL changed (SPA navigation)
-    updatePageClasses();
-
-    // Handle dynamic content
-    removeNotificationBadges();
-    hideMetrics();
-  });
 
   // Initialize
   function init() {
@@ -92,13 +73,7 @@
       updatePageClasses();
     }
 
-    // Start observing
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
-
-    // Also listen for URL changes via popstate
+    // Listen for URL changes via popstate
     window.addEventListener('popstate', updatePageClasses);
 
     // Intercept pushState/replaceState for SPA navigation
@@ -107,13 +82,16 @@
 
     history.pushState = function() {
       originalPushState.apply(this, arguments);
-      setTimeout(updatePageClasses, 0);
+      updatePageClasses();
     };
 
     history.replaceState = function() {
       originalReplaceState.apply(this, arguments);
-      setTimeout(updatePageClasses, 0);
+      updatePageClasses();
     };
+
+    // Fallback: periodic URL check (every 500ms) for edge cases
+    setInterval(checkUrlChange, 500);
   }
 
   // Wait for body to exist
